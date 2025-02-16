@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Meltmino;
   line-height: 1.5;
   font-weight: 400;
 
@@ -11,6 +11,32 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: Meltmino;
+  src: url(./fonts/meltmino/OpenType-TT/Meltmino-Regular.ttf);
+}
+
+@font-face {
+  font-family: Meltmino;
+  src: url(./fonts/meltmino/OpenType-TT/Meltmino-Bold.ttf);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: SpaceMono;
+  src: url(./fonts/space-mono/SpaceMono-Regular.ttf);
+}
+
+@font-face {
+  font-family: SpaceMono;
+  src: url(./fonts/space-mono/SpaceMono-Bold.ttf);
+  font-weight: bold;
+}
+
+p {
+  font-family: SpaceMono;
 }
 
 a {
