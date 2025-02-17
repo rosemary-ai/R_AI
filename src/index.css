@@ -43,6 +43,7 @@
 
 p {
   font-family: SpaceMono;
+  color: var(--pink);
 }
 
 a {

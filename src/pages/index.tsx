@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './index.css'
 
 function Index() {
@@ -8,6 +9,7 @@ function Index() {
         <p>
           rosemary ai
         </p>
+        <Link to="/rai">PRESS START</Link>
       </div>
     </>
   )
