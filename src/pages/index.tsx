@@ -5,12 +5,10 @@ function Index() {
   return (
     <>
       <h1>R_AI</h1>
-      <div className="card">
-        <p>
-          rosemary ai
-        </p>
-        <Link to="/rai">PRESS START</Link>
-      </div>
+      <p>
+        rosemary ai
+      </p>
+      <Link to="/rai" id="press-start">[ PRESS START ]</Link>
     </>
   )
 }
