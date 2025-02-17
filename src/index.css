@@ -11,6 +11,12 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --pink: #e64386;
+  --pale-peach: #f6d7bd;
+  --peach: #f19c98;
+  --blue: #035e79;
+  --dark-blue: #3c3951;
 }
 
 @font-face {
@@ -41,11 +47,11 @@ p {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--blue);
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--pink);
 }
 
 body {
@@ -82,11 +88,11 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: var(--dark-blue);
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: var(--pink);
   }
   button {
     background-color: #f9f9f9;
