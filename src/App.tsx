@@ -1,19 +1,15 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Rai from './pages/rai';
 import Index from './pages';
+import { useState } from 'react';
 
 function App() {
-  return (
-    <>
-     <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/rai" element={<Rai />} />
-        </Routes>
-      </BrowserRouter>
-    </>
-  )
+  const [pressStart, setPressStart] = useState(false);
+  const onStartClick = () => {
+    setPressStart(true);
+  }
+  
+  return !pressStart ? <Index onStartClick={onStartClick}/> : <Rai />;
 }
 
 export default App
