@@ -4,11 +4,16 @@ import './index.css'
 function Index() {
   return (
     <>
-      <h1>R_AI</h1>
-      <p>
-        rosemary ai
-      </p>
-      <Link to="/rai" id="press-start">[ PRESS START ]</Link>
+      <div className="wrapper">
+        <div className="sliding-background"></div>
+        <div className="card">
+          <h1>R_AI</h1>
+            <p>
+              rosemary ai
+            </p>
+            <Link to="/rai" id="press-start">[ PRESS START ]</Link>
+        </div>
+      </div>
     </>
   )
 }
