@@ -12,7 +12,7 @@ function Index({ onStartClick }: IndexProps) {
         <div className="card">
           <h1>R_AI</h1>
           <p>rosemary ai</p>
-          <a onClick={() => onStartClick()} id="press-start">[ PRESS START ]</a>
+          <a onClick={onStartClick} id="press-start">[ PRESS START ]</a>
         </div>
       </div>
     </>

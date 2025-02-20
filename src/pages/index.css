@@ -1,5 +1,5 @@
 body {
-  background-color: #f9ede9;
+  background-color: var(--pale-peach);
   margin: 0;
   padding: 0;
 }
