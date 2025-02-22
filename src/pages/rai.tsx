@@ -1,5 +1,5 @@
 import './rai.css'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface PlayerProps {
   x: number;
@@ -17,17 +17,22 @@ function Rai() {
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [keys, setKeys] = useState(new Set<string>());
+  const animationRef = useRef<number | null>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
         e.preventDefault();
-        setKeys((keys) => new Set(keys).add(e.key));
+        setKeys((keys) => {
+          if (keys.has(e.key)) return keys;
+          return new Set(keys).add(e.key);
+        })
       }
     };
 
     const handleKeyUp = (e: KeyboardEvent) => {
       setKeys((keys) => {
+        if (!keys.has(e.key)) return keys;
         const newKeys = new Set(keys);
         newKeys.delete(e.key);
         return newKeys;
@@ -43,6 +48,10 @@ function Rai() {
   }, []);
 
   useEffect(() => {
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+    }
+
     const move = () => {
       const xMove = Number(keys.has("ArrowRight")) - Number(keys.has("ArrowLeft"));
       const yMove = Number(keys.has("ArrowDown")) - Number(keys.has("ArrowUp"));
@@ -52,14 +61,14 @@ function Rai() {
         setX((x) => x + (xMove / magnitude) * SPEED);
         setY((y) => y + (yMove / magnitude) * SPEED);
 
-        if (keys.size > 0) {
-          requestAnimationFrame(move);
-        }
+        animationRef.current = requestAnimationFrame(move);
+      } else if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
       }
     };
 
     if (keys.size > 0) {
-      requestAnimationFrame(move);
+      animationRef.current = requestAnimationFrame(move);
     }
   }, [keys]);
 
