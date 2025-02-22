@@ -18,7 +18,7 @@ p {
     transform: translate3d(0, 0, 0);
   }
   100%{
-    transform: translate3d(-3124px, 0, 0); 
+    transform: translate3d(-312.4vh, 0, 0); 
   }
 }
 
@@ -33,15 +33,14 @@ p {
 
 .sliding-background {
   position: absolute;
-  top: -10px;
   z-index: -1;
-  height: 1041.5px;
-  width: 6248px;
+  height: 104.15vh;
+  width: 624.8vh;
   background: url(../bg/index_bg.png) repeat-x;
   background-blend-mode: lighten;
   background-color: rgba(255, 255, 255, 0.2);
   background-size: contain;
-  animation: slide 70s linear infinite;
+  animation: slide 25s linear infinite;
 }
 
 .card {
