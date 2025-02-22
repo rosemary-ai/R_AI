@@ -1,7 +1,34 @@
+.transition {
+    background-color: var(--pale-peach);
+    z-index: 1;
+    width: 100%;
+    height: 50%;
+    left: 0;
+    position: absolute;
+    transition: height 1.5s ease;
+}
+
+.top {
+    top: 0;
+}
+
+.bottom {
+    bottom: 0;
+}
+
+.open.top {
+    height: 0;
+}
+
+.open.bottom {
+    height: 0;
+}
+
 .world {
-    background-color: brown;
-    width: 1000px;
-    height: 1000px;
+    z-index: -1;
+    background-color: brown; /* background tiles */
+    width: 100%;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
