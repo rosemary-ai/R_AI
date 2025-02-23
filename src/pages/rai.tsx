@@ -6,27 +6,40 @@ interface PlayerProps {
   y: number;
 }
 
+interface BlockProps {
+  x: number;
+  y: number;
+}
+
 interface WorldProps {
   transitionOver: boolean;
 }
 
 const SPEED = 3.5;
 
+const clamp = (x: number, min: number, max: number): number => {
+  return Math.max(min, Math.min(x, max));
+}
+
 function Player({ x, y }: PlayerProps) {
-  // TODO: add image/animation
+  // TODO: add image/animation, change css styles to be constants (probably move to inline style)
   return <div className="player" style={{top: y, left: x}}>under construction</div>
 }
 
+function Block({ x, y }: BlockProps) {
+  return <div className="collision" style={{top: y, left: x}}>COLLISION</div>
+}
+
+// TODO: camera, cell scaling
+
 function World({ transitionOver }: WorldProps) {
+  const { height, width } = useWindowDimensions();
+
   const [x, setX] = useState(100);
   const [y, setY] = useState(100);
   const [keys, setKeys] = useState(new Set<string>());
   const animationRef = useRef<number | null>(null);
   const canMoveRef = useRef<boolean>(false);
-
-  /**
-   * TODO: can't go off map
-   */
 
   useEffect(() => {
     canMoveRef.current = transitionOver;
@@ -72,8 +85,8 @@ function World({ transitionOver }: WorldProps) {
       const magnitude = Math.sqrt(xMove * xMove + yMove * yMove);
       if (magnitude) {
         if (canMoveRef.current) {
-          setX((x) => x + (xMove / magnitude) * SPEED);
-          setY((y) => y + (yMove / magnitude) * SPEED);
+          setX((x) => clamp(x + (xMove / magnitude) * SPEED, 0, width - 100)); // MAKE THESE (CELL SCALED) CONSTANTS LATER
+          setY((y) => clamp(y + (yMove / magnitude) * SPEED, 0, height - 100));
         }
 
         animationRef.current = requestAnimationFrame(move);
@@ -90,6 +103,7 @@ function World({ transitionOver }: WorldProps) {
   return (
     <div className="world">
       <Player x={x} y={y}/>
+      <Block x={200} y={200}/>
     </div>
   )
 }
@@ -119,4 +133,29 @@ function Rai() {
   )
 }
 
+// https://stackoverflow.com/questions/36862334/get-viewport-window-height-in-reactjs
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+}
+
+function useWindowDimensions() {
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return windowDimensions;
+}
 export default Rai

@@ -40,7 +40,7 @@ p {
   background-blend-mode: lighten;
   background-color: rgba(255, 255, 255, 0.2);
   background-size: contain;
-  animation: slide 25s linear infinite;
+  animation: slide 30s linear infinite;
 }
 
 .card {
